@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/Laravel-RESTfulAPI":{"type":null,"mount_options":["uid=1000","gid=1000"],"guestpath":"/home/vagrant/Laravel-RESTfulAPI","hostpath":"H:/RESTfulAPI laravel/Laravel-RESTfulAPI","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"H:/RESTfulAPI laravel/Laravel-RESTfulAPI","disabled":false,"__vagrantfile":true}}}
