@@ -2,9 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Product;
 
-class Seller extends Model
+//use Illuminate\Database\Eloquent\Model;
+
+class Seller extends User
 {
     public function products()
     {

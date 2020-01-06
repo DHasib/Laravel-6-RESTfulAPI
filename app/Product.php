@@ -9,7 +9,7 @@ class Product extends Model
     const AVAILABLE_PRODUCT = 'available';
     const UNAVAILABLE_PRODUCT = 'unavailable';
 
-
+    
     protected $fillable = [
         'name', 'description', 'quantity', 'status', 'image', 'seller_id',   
     ];
@@ -26,9 +26,9 @@ class Product extends Model
     {
         return $this->belongsTo(Seller::class);
     }
-    public function transaction()
+    public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Tramsaction::class);
     }
     public function categories()
     {

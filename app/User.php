@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Support\Str;
+
 class User extends Authenticatable
 {
     use Notifiable;
 
+  
 
     //DEFINING THE CONSTRAINT TO CHECK AND VERIFI USER..................................
     const VERIFIED_USER = '1';
@@ -18,7 +21,7 @@ class User extends Authenticatable
     const ADMIN_USER = 'true';
     const REGULAR_USER = 'false'; 
 
-
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +53,7 @@ class User extends Authenticatable
 
      // TO Defining some public function to declare verification number and admin as a test.........................
      
-     public function isVerifird()
+     public function isVerified()
      {
          return $this->verified == User::VERIFIED_USER;
      }
@@ -60,7 +63,7 @@ class User extends Authenticatable
      }
      public static function generateVerificationCode()
      {
-         return str_random(40);
+         return Str::random(40);
      }
 
 }
