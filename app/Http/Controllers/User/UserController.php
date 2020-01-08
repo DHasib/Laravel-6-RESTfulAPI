@@ -101,7 +101,7 @@ class UserController extends Controller
 
       //first if condition check user request has admin or not........................
        if ($request->has('admin')) {
-           //2nd if condition check admin request user verified or not................................
+           //2nd if condition check user are verified or not to update admin field................................
            if (!$user->isVerified()) {
               return response()->json(['error' => 'Only verified user can modify the admin field', 'code' => 409], 409);
            }
@@ -126,6 +126,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //fetch the user data using auth user id............................
+        $user = User::findOrFail($id);
+
+        $user->delete();
+        return response()->json(['data' => $user], 200);
+
     }
 }
