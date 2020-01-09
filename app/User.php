@@ -50,7 +50,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//Mutator
+     //create Mutator to set value small later in database.............................................  
+     public function setNameAttribute($name)
+     { 
+           $this->attributes['name'] = strtolower($name);
+     }
+      //create Accessor to get value capital in database.............................................  
+      public function getNameAttribute($name)
+      { 
+            return ucwords($name);
+      }
      // TO Defining some public function to declare verification number and admin as a test.........................
      public function isVerified()
      {
