@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 /**
  * Buyer ....
  */
- Route::resource('buyer','Buyer\BuyerController', ['only' => ['index', 'show']]);
+ Route::resource('buyers','Buyer\BuyerController', ['only' => ['index', 'show']]);
 
  /**
  * Category ....
@@ -26,11 +26,11 @@ Route::resource('category','Category\CategoryController', ['except' => ['create'
 /**
  * Products ....
  */
-Route::resource('product','Product\ProductController', ['only' => ['index', 'show']]);
+Route::resource('products','Product\ProductController', ['only' => ['index', 'show']]);
 /**
  * Sellers ....
  */
-Route::resource('seller','Seller\SellerController', ['only' => ['index', 'show']]);
+Route::resource('sellers','Seller\SellerController', ['only' => ['index', 'show']]);
 
 /**
  * Transactions ....

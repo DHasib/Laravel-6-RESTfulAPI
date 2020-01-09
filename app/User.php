@@ -50,9 +50,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+//Mutator
      // TO Defining some public function to declare verification number and admin as a test.........................
-     
      public function isVerified()
      {
          return $this->verified == User::VERIFIED_USER;
