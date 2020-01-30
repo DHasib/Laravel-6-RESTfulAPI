@@ -12,7 +12,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-        <form action="restfulapi.test/api/users" method="post">
+        <form action="{{url('api/users')}}" method="post">
         @csrf
 
         
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+            <input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd">
         </div>
         <div class="form-group form-check">
             <label class="form-check-label">
