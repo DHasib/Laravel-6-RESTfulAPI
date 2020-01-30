@@ -4,11 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Validator;
 
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,8 @@ class UserController extends Controller
         //fetch all the user data............................
         $users = User::all();
        //return fetch data into json format......................
-        return response()->json(['data' => $users], 200);
+        return  $this->showAll($users);
+
        
     }
 
@@ -35,8 +36,8 @@ class UserController extends Controller
        //validate user data for request to store/create..............
        $rules = Validator::make($request->all(),[
                'name'     =>  "required",
-               'email'    =>  " required|email|unique:users",
-               'password' =>  "required|min:6|confirmed",
+               'email'    =>  "required|email|unique:users",
+               'password' =>  "required|min:6",
        ])->validate();
 
        $data = $request->all();
@@ -47,7 +48,8 @@ class UserController extends Controller
 
        $user = User::create($data);
 
-       return response()->json(['data' => $user], 201);
+       return  $this->showOne($user, 201);
+
 
     }
 
@@ -61,7 +63,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return response()->json(['data' => $user], 200);
+        return  $this->showOne($user);
         
     }
 
@@ -103,19 +105,19 @@ class UserController extends Controller
        if ($request->has('admin')) {
            //2nd if condition check user are verified or not to update admin field................................
            if (!$user->isVerified()) {
-              return response()->json(['error' => 'Only verified user can modify the admin field', 'code' => 409], 409);
+              return $this->errorResponse('Only verified user can modify the admin field', 409);
            }
          $user->admin = $request->admin;
        }
 
        //This if condition check user Updated value into database or not and through an message..............................
        if (!$user->isDirty()) {
-            return response()->json(['error' => 'You need to specify a different Value to Update', 'code' => 422], 422);
+            return $this->errorResponse( 'You need to specify a different Value to Update', 422);
        }
          
        $user->save();
 
-       return response()->json(['data' => $user], 200);
+       return  $this->showOne($user);
     }
 
     /**
@@ -130,7 +132,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->delete();
-        return response()->json(['data' => $user], 200);
+        return  $this->showOne($user);
 
     }
 }
